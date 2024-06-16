@@ -1,0 +1,11 @@
+$ stack install heterocephalus  # Only first time
+$ stack repl --no-build --no-load
+Prelude> :m Text.Heterocephalus Text.Blaze.Renderer.String
+Prelude> :set -XTemplateHaskell -XQuasiQuotes
+Prelude> let a = 34; b = "<script>"; in renderMarkup [compileText|foo #{a} #{b}|]
+"foo 34 <script>"
+Prelude> let a = 34; b = "<script>"; in renderMarkup [compileHtml|foo #{a} #{b}|]
+"foo 34 &lt;script&gt;"
+
+
+
